@@ -2,7 +2,6 @@ package az.edu.ada.wm2.lab6.service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.HashSet;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -10,7 +9,6 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import az.edu.ada.wm2.lab6.model.Category;
 import az.edu.ada.wm2.lab6.model.Product;
 import az.edu.ada.wm2.lab6.model.dto.ProductRequestDto;
 import az.edu.ada.wm2.lab6.model.dto.ProductResponseDto;
@@ -39,10 +37,6 @@ public class ProductServiceImpl implements ProductService {
         validatePrice(productDto.getPrice());
 
         Product product = productMapper.toEntity(productDto);
-        if (productDto.getCategoryIds() != null) {
-            List<Category> categories = categoryRepository.findAllById(productDto.getCategoryIds());
-            product.setCategories(new HashSet<>(categories));
-        }
 
         Product saved = productRepository.save(product);
         return productMapper.toResponseDto(saved);
@@ -73,10 +67,7 @@ public class ProductServiceImpl implements ProductService {
         product.setPrice(productDto.getPrice());
         product.setExpirationDate(productDto.getExpirationDate());
 
-        if (productDto.getCategoryIds() != null) {
-            List<Category> categories = categoryRepository.findAllById(productDto.getCategoryIds());
-            product.setCategories(new HashSet<>(categories));
-        }
+        product.setCategories(productMapper.toEntity(productDto).getCategories());
 
         Product saved = productRepository.save(product);
         return productMapper.toResponseDto(saved);

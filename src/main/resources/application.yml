@@ -2,12 +2,19 @@ spring:
   application:
     name: lab4
   datasource:
-    url: jdbc:h2:mem:productDB
+    url: jdbc:h2:file:./data/productDB;MODE=MySQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
     driver-class-name: org.h2.Driver
+    username: sa
+    password:
   h2:
     console:
       enabled: true
+      settings:
+        trace: false
+        web-allow-others: false
   jpa:
     show-sql: true
     hibernate:
       ddl-auto: update
+server:
+  port: 8081

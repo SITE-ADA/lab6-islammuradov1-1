@@ -1,7 +1,7 @@
 package az.edu.ada.wm2.lab6.model;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import jakarta.persistence.Column;
@@ -33,6 +33,6 @@ public class Category {
 
     @ManyToMany(mappedBy = "categories")
     @Builder.Default
-    private Set<Product> products = new HashSet<>();
+    private List<Product> products = new ArrayList<>();
 
 }

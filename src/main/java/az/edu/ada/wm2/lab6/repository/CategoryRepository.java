@@ -1,5 +1,6 @@
 package az.edu.ada.wm2.lab6.repository;
 
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -9,4 +10,6 @@ import az.edu.ada.wm2.lab6.model.Category;
 
 @Repository
 public interface CategoryRepository extends JpaRepository<Category, UUID> {
+
+    Optional<Category> findByName(String name);
 }

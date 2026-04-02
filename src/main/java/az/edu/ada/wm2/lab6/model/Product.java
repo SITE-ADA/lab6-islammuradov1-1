@@ -2,6 +2,8 @@ package az.edu.ada.wm2.lab6.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import jakarta.persistence.Column;
@@ -45,5 +47,5 @@ public class Product {
             inverseJoinColumns = @JoinColumn(name = "category_id")
     )
     @Builder.Default
-    private java.util.Set<Category> categories = new java.util.HashSet<>();
+    private List<Category> categories = new ArrayList<>();
 }
